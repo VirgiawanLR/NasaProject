@@ -7,18 +7,26 @@ async function httpGetPlanets() {
 }
 
 async function httpGetLaunches() {
-  // TODO: Once API is ready.
-  // Load launches, sort by flight number, and return as JSON.
+  const response = await axios.get(`${URL_API}/launches`);
+  return response.data;
 }
 
 async function httpSubmitLaunch(launch) {
-  // TODO: Once API is ready.
-  // Submit given launch data to launch system.
+  try {
+    await axios.post(`${URL_API}/launches`, launch);
+    return { ok: true };
+  } catch (error) {
+    return { ok: false };
+  }
 }
 
 async function httpAbortLaunch(id) {
-  // TODO: Once API is ready.
-  // Delete launch with given ID.
+  try {
+    await axios.delete(`${URL_API}/launches/${id}`);
+    return { ok: true };
+  } catch (error) {
+    return { ok: false };
+  }
 }
 
 export { httpGetPlanets, httpGetLaunches, httpSubmitLaunch, httpAbortLaunch };
