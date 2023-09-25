@@ -1,22 +1,30 @@
 name: NASA PROJECT CI
 on:
+  # on push or pull_request into a defined branch, it will do all the "jobs"
   push:
     branches: [main]
   pull_request:
     branches: [main]
 jobs:
-  build:
+  build: # building the project on github's CI server
     env:
-      CI: true
+      CI: true # negate all the watch procedure
+      MONGO_URL: mongodb://localhost/
     strategy:
       matrix:
         node-version: [16.x, 18.x]
+        mongodb-version: ["5.0"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: use NodeJS version ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Use MongoDB from GitHub actions for mock-test
+        uses: supercharge/mongodb-github-action@v1.10.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm install
       - run: npm run build --prefix client
+      - run: npm run test
