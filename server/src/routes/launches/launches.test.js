@@ -1,7 +1,7 @@
 const request = require("supertest"); //http assertions test
 const app = require("../../app");
 const { connectingDB, disconnectingDB } = require("../../database/db.config");
-const { loadLaunchesData } = require("../../models/launches.model");
+const { loadPlanet } = require("../../models/planets.model");
 const BASE_API = "/api/v1";
 
 describe("launches API", () => {
@@ -11,7 +11,7 @@ describe("launches API", () => {
         console.log("Connected to MongoDB");
       })
       .catch((err) => console.log(err));
-    await loadLaunchesData();
+    await loadPlanet();
   });
 
   afterAll(async () => {
