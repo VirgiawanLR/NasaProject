@@ -1,5 +1,4 @@
-const fs = require("fs");
-const https = require("https");
+const http = require("http");
 const { loadPlanet } = require("./models/planets.model");
 const { loadLaunchesData } = require("./models/launches.model");
 const db = require("./database/db.config");
@@ -8,13 +7,7 @@ require("dotenv").config();
 const app = require("./app");
 
 const PORT = process.env.PORT || 8000;
-const server = https.createServer(
-  {
-    key: fs.readFileSync("key.pem"),
-    cert: fs.readFileSync("cert.pem"),
-  },
-  app
-);
+const server = http.createServer(app);
 
 async function serverListen() {
   db.connectingDB()
