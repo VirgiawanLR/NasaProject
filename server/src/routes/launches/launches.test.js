@@ -1,6 +1,9 @@
 const request = require("supertest"); //http assertions test
 const app = require("../../app");
-const { connectingDB, disconnectingDB } = require("../../database/db.config");
+const {
+  connectingDB,
+  disconnectingDB,
+} = require("../../infra/database/database.config");
 const { loadPlanet } = require("../../models/planets.model");
 const BASE_API = "/api/v1";
 

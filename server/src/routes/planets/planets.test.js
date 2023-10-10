@@ -1,6 +1,9 @@
 const request = require("supertest");
 const app = require("../../app");
-const { connectingDB, disconnectingDB } = require("../../database/db.config");
+const {
+  connectingDB,
+  disconnectingDB,
+} = require("../../infra/database/database.config");
 const BASE_API = "/api/v1";
 
 describe("Planets API", () => {
