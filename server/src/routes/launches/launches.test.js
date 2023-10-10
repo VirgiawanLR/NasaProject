@@ -4,7 +4,7 @@ const {
   connectingDB,
   disconnectingDB,
 } = require("../../infra/database/database.config");
-const { loadPlanet } = require("../../models/planets.model");
+const { loadPlanet } = require("../../infra/models/planets.model");
 const BASE_API = "/api/v1";
 
 describe("launches API", () => {
