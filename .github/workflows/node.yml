@@ -2,9 +2,9 @@ name: NASA PROJECT CI
 on:
   # on push or pull_request into a defined branch, it will do all the "jobs"
   push:
-    branches: [main]
+    branches: [main, DDD-version]
   pull_request:
-    branches: [main]
+    branches: [main, DDD-version]
 jobs:
   build: # building the project on github's CI server
     env:
