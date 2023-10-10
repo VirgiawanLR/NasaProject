@@ -1,7 +1,6 @@
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-require("dotenv").config();
+const { database: dbConfig } = require("../../config/config");
 const mongoose = require("mongoose");
-const MONGO_DB_URL = process.env.MONGO_URL;
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(MONGO_DB_URL, {
@@ -26,16 +25,26 @@ const MONGO_DB_URL = process.env.MONGO_URL;
 // }
 // run().catch(console.dir);
 async function connectingDB() {
-  await mongoose.connect(MONGO_DB_URL, {
-    dbName: "nasaProject",
-    maxPoolSize: 10,
-    minPoolSize: 5,
-    serverSelectionTimeoutMS: 15000,
-  });
+  await mongoose
+    .connect(dbConfig.url, {
+      dbName: dbConfig.db_name,
+      maxPoolSize: 10,
+      minPoolSize: 5,
+      serverSelectionTimeoutMS: 15000,
+    })
+    .then(() => {
+      console.log("Connected to MongoDB");
+    })
+    .catch((err) => console.log(err));
 }
 
 async function disconnectingDB() {
-  await mongoose.disconnect();
+  await mongoose
+    .disconnect()
+    .then(() => {
+      console.log("Connected to MongoDB");
+    })
+    .catch((err) => console.log(err));
 }
 
 module.exports = {

@@ -5,11 +5,7 @@ const BASE_API = "/api/v1";
 
 describe("Planets API", () => {
   beforeAll(async () => {
-    await connectingDB()
-      .then(() => {
-        console.log("Connected to MongoDB");
-      })
-      .catch((err) => console.log(err));
+    await connectingDB();
   });
 
   afterAll(async () => {

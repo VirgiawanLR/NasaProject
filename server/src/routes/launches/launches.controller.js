@@ -4,7 +4,7 @@ const {
   isLaunchExist,
   abortLaunch,
   isAlreadyAborted,
-} = require("../../models/launches.model");
+} = require("../../infra/models/launches.model");
 
 const { getPagination } = require("../../utils/query");
 

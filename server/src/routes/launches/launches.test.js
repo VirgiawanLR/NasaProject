@@ -6,11 +6,7 @@ const BASE_API = "/api/v1";
 
 describe("launches API", () => {
   beforeAll(async () => {
-    await connectingDB()
-      .then(() => {
-        console.log("Connected to MongoDB");
-      })
-      .catch((err) => console.log(err));
+    await connectingDB();
     await loadPlanet();
   });
 
